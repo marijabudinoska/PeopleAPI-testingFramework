@@ -9,11 +9,17 @@ import org.testng.annotations.Test;
 
 public class InitialTestFile {
     PeopleApiClient peopleApiClient = new PeopleApiClient();
-    HttpResponse response;
+    HttpResponse getAllPeople;
+    HttpResponse getOnePerson;
 
     @Test
     public void InitialTest() throws Exception {
-      response = peopleApiClient.getWelcomeRequest();
-      String body = EntityUtils.toString(response.getEntity());
+
+      getAllPeople = peopleApiClient.getAllPeople();
+      String bodyAllPeople = EntityUtils.toString(getAllPeople.getEntity());
+
+      getOnePerson = peopleApiClient.getOnePerson();
+      String bodyOnePerson = EntityUtils.toString(getOnePerson.getEntity());
     }
+
 }
