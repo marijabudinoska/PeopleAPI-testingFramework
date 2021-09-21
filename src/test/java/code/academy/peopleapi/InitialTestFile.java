@@ -8,18 +8,26 @@ import org.testng.annotations.Test;
 
 
 public class InitialTestFile {
+
     PeopleApiClient peopleApiClient = new PeopleApiClient();
-    HttpResponse getAllPeople;
-    HttpResponse getOnePerson;
+
+    HttpResponse deleteOnePerson;
+    HttpResponse postOnePerson;
+    HttpResponse putLocation;
+
 
     @Test
     public void InitialTest() throws Exception {
 
-      getAllPeople = peopleApiClient.getAllPeople();
-      String bodyAllPeople = EntityUtils.toString(getAllPeople.getEntity());
+      deleteOnePerson = peopleApiClient.deleteOnePerson();
+      String bodyDeleteOnePerson = EntityUtils.toString(deleteOnePerson.getEntity());
 
-      getOnePerson = peopleApiClient.getOnePerson();
-      String bodyOnePerson = EntityUtils.toString(getOnePerson.getEntity());
-    }
+      postOnePerson = peopleApiClient.postOnePerson();
+      String bodyPostOnePerson = EntityUtils.toString(postOnePerson.getEntity());
 
+      putLocation = peopleApiClient.putLocation();
+      String bodyPutLocation = EntityUtils.toString(putLocation.getEntity());
+          }
 }
+
+
