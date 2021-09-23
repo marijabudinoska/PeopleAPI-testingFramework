@@ -20,15 +20,19 @@ import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
 
+
 public class PeopleApiClient {
+    public PeopleApiClient() throws Exception {
+    }
+
+    Header contentType = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
+
+    SSLContext sslContext = SSLContextBuilder
+            .create()
+            .loadTrustMaterial(new TrustSelfSignedStrategy())
+            .build();
 
     public HttpResponse getWelcomeRequest() throws Exception {
-        Header contentType = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-
-        SSLContext sslContext = SSLContextBuilder
-                .create()
-                .loadTrustMaterial(new TrustSelfSignedStrategy())
-                .build();
 
         HttpGet request = new HttpGet("https://people-api1.herokuapp.com");
         request.setHeader(contentType);
@@ -46,12 +50,6 @@ public class PeopleApiClient {
         return response;
     }
     public HttpResponse getOnePerson() throws Exception {
-        Header contentType = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-
-        SSLContext sslContext = SSLContextBuilder
-                .create()
-                .loadTrustMaterial(new TrustSelfSignedStrategy())
-                .build();
 
         HttpGet request = new HttpGet("https://people-api1.herokuapp.com/api/person/6140aa4595585b0004633fce");
         request.setHeader(contentType);
@@ -70,12 +68,6 @@ public class PeopleApiClient {
 
     }
     public HttpResponse httpGet(String url) throws Exception {
-        Header contentType = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-
-        SSLContext sslContext = SSLContextBuilder
-                .create()
-                .loadTrustMaterial(new TrustSelfSignedStrategy())
-                .build();
 
         HttpGet request = new HttpGet(url);
         request.setHeader(contentType);
@@ -95,12 +87,6 @@ public class PeopleApiClient {
     }
 
     public HttpResponse httpDelete(String url) throws Exception{
-        Header contentType = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-
-        SSLContext sslContext = SSLContextBuilder
-                .create()
-                .loadTrustMaterial(new TrustSelfSignedStrategy())
-                .build();
 
         HttpDelete request = new HttpDelete(url);
         request.setHeader(contentType);
@@ -118,18 +104,12 @@ public class PeopleApiClient {
         return response;
     }
 
-    public HttpResponse httpPost(String url, JSONObject payload) throws Exception {
-        Header contentType = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-
-        SSLContext sslContext = SSLContextBuilder
-                .create()
-                .loadTrustMaterial(new TrustSelfSignedStrategy())
-                .build();
+    public HttpResponse httpPost(String url, String payload) throws Exception {
 
         HttpPost request = new HttpPost(url);
 
         request.setHeader(contentType);
-        request.setEntity(new StringEntity(payload.toString()));
+        request.setEntity(new StringEntity(payload));
 
         HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
 
@@ -145,12 +125,6 @@ public class PeopleApiClient {
     }
 
     public HttpResponse httpPut(String url, JSONObject payload) throws Exception {
-        Header contentType = new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json");
-
-        SSLContext sslContext = SSLContextBuilder
-                .create()
-                .loadTrustMaterial(new TrustSelfSignedStrategy())
-                .build();
 
         HttpPut request = new HttpPut(url);
 
