@@ -102,6 +102,7 @@ public class InitialTestFile {
         String body = EntityUtils.toString(response.getEntity());
         PostNewPersonResponse postNewPersonResponse;
         postNewPersonResponse =jsonStringToObject(body, PostNewPersonResponse.class);
+
         Assert.assertEquals(postNewPersonResponse.getMessage(), "Person succesfully inserted");
         Assert.assertEquals(postNewPersonResponse.getCode(),"P201");
         Assert.assertEquals(postNewPersonResponse.getPersonData().getName(),"Marija");
